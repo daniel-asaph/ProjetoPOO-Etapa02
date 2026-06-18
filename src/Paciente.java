@@ -1,5 +1,4 @@
 public class Paciente extends Pessoa{
-    private int idade;
     private String convenioNome;
     private boolean ativo;
 
@@ -39,14 +38,30 @@ public class Paciente extends Pessoa{
         this.ativo = false;
     }
 
+    public String getConvenioNome() {
+        return convenioNome;
+    }
+
+    public void setConvenioNome(String convenioNome) {
+        this.convenioNome = convenioNome;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public String exibirResumo() {
         String status = "Sim";
         if (!ativo) {
             status = "Nao";
         }
-        return "Nome: " + nome + " | CPF: " + cpf + " | Idade: " + idade
-                + " | Tel: " + telefone + " | Convenio: " + convenioNome
+        return "Nome: " + getNome() + " | CPF: " + getCpf() + " | Idade: " + getIdade()
+                + " | Tel: " + getTelefone() + " | Convenio: " + convenioNome
                 + " | Ativo: " + status;
     }
 }

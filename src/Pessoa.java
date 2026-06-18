@@ -4,6 +4,10 @@ public abstract class Pessoa {
     protected String telefone;
     protected int idade;
 
+    public Pessoa(String nome){
+        this.nome = nome;
+
+    }
     public Pessoa(String nome, String cpf){
         this.nome = nome;
         this.cpf = cpf;

@@ -98,7 +98,7 @@ public class Main {
             int idade = Integer.parseInt(sc.nextLine());
             System.out.print("Telefone: ");
             String tel = sc.nextLine();
-            pacientes[totalPacientes] = new Paciente(nome, cpf, idade, tel);
+            pacientes[totalPacientes] = new Paciente(nome, cpf, tel, idade);
         } else {
             System.out.print("Idade: ");
             int idade = Integer.parseInt(sc.nextLine());
@@ -106,7 +106,7 @@ public class Main {
             String tel = sc.nextLine();
             System.out.print("Convenio: ");
             String conv = sc.nextLine();
-            pacientes[totalPacientes] = new Paciente(nome, cpf, idade, tel, conv);
+            pacientes[totalPacientes] = new Paciente(nome, cpf, tel, idade, conv);
         }
         totalPacientes++;
         System.out.println("Paciente cadastrado com sucesso!");
@@ -343,7 +343,7 @@ public class Main {
             System.out.println("Paciente nao encontrado.");
             return;
         }
-        if (!pacientes[idxPac].ativo) {
+        if (!pacientes[idxPac].isAtivo()) {
             System.out.println("Paciente inativo. Nao e possivel agendar.");
             return;
         }
