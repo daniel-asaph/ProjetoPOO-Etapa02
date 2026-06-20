@@ -96,7 +96,7 @@ public abstract class Profissional extends Pessoa {
             if (i > 0) dias = dias + ", ";
             dias = dias + diasDisponiveis[i];
         }
-        return "Nome: " + getNome() + " | Espec: " + especialidade + " | Reg: " + registroProfissional
-                + " | Valor: R$" + valorConsulta + " | Dias: " + dias;
+        return "Nome: " + getNome() + " | Espec: " + getEspecialidade() + " | Reg: " + getRegistroProfissional()
+                + " | Valor: R$" + getValorConsulta() + " | Dias: " + getDiasDisponiveis();
     }
 }
