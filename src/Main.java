@@ -220,10 +220,10 @@ public class Main {
 
         if (tipo == 1) {
             if (esp.equals("fisioterapia")) {
-                System.out.print("Total de sessões previstas: ");
-                int totalSessoesPrevistas = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, totalSessoesPrevistas);
-                }
+                System.out.print("Total de sessoes padrao: ");
+                int totalSessoes = Integer.parseInt(sc.nextLine());
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, totalSessoes);
+            }
             // else if (esp.equals("psicologia")) { ... }
             // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
@@ -234,10 +234,10 @@ public class Main {
             double valor = Double.parseDouble(sc.nextLine());
 
             if (esp.equals("fisioterapia")) {
-                System.out.print("Total de sessões previstas: ");
-                int totalSessoesPrevistas = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, reg, valor, totalSessoesPrevistas);
-                }
+                System.out.print("Total de sessoes padrao: ");
+                int totalSessoes = Integer.parseInt(sc.nextLine());
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, reg, valor, totalSessoes);
+            }
             // else if (esp.equals("psicologia")) { ... }
             // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
@@ -255,9 +255,10 @@ public class Main {
                 dias[i] = sc.nextLine();
             }
             if (esp.equals("fisioterapia")) {
-                System.out.print("Total de sessões previstas: ");
-                int totalSessoesPrevistas = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, reg, valor, dias, qtd, totalSessoesPrevistas);
+                System.out.print("Total de sessoes padrao: ");
+                int totalSessoes = Integer.parseInt(sc.nextLine());
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, reg, valor, dias, qtd, totalSessoes);
+            }
             // else if (esp.equals("psicologia")) { ... }
             // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
@@ -265,7 +266,6 @@ public class Main {
         totalProfissionais++;
         System.out.println("Profissional cadastrado!");
     }
-}
 
     public static void atualizarProfissional() {
         System.out.print("Nome do profissional: ");
@@ -455,7 +455,7 @@ public class Main {
             if (profissionais[i].getEspecialidade().equals(esp)
                     && profissionais[i].getValorConsulta() > 0
                     && profissionais[i].atendeNoDia(diaSemana)
-                    && !temConflito(profissionais[i].nome, data, horario)) {
+                    && !temConflito(profissionais[i].getNome(), data, horario)) {
                 idxProf = i;
                 break;
             }
@@ -466,7 +466,7 @@ public class Main {
             return;
         }
 
-        consultas[totalConsultas] = new Consulta(cpf, profissionais[idxProf].nome, data, horario);
+        consultas[totalConsultas] = new Consulta(cpf, profissionais[idxProf].getNome(), data, horario);
         totalConsultas++;
         System.out.println("Consulta agendada com " + profissionais[idxProf].nome + "!");
     }

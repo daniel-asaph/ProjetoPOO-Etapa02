@@ -18,14 +18,20 @@ public class Fisioterapeuta extends Profissional{
 
     @Override
     public void registrarEspecifico() {
-        System.out.println("Registrando sessões de fisioterapia. Total previsto: " + this.totalSessoesPrevistas);
+        System.out.println("Total previsto de sessões: " + this.totalSessoesPrevistas);
     }
 
     @Override
     public String exibirResumo() {
+        String dias = "";
+        for (int i = 0; i < getTotalDias(); i++) {
+            if (i > 0) dias = dias + ", ";
+            dias = dias + getDiasDisponiveis()[i];
+        }
         return "Fisioterapeuta: " + getNome() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + getDiasDisponiveis() + " | Total de sessões previstas: " + getTotalSessoesPrevistas();
+                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias + " | Abordagem: " + getTotalSessoesPrevistas();
     }
+
 
     public int getTotalSessoesPrevistas() {
         return totalSessoesPrevistas;
