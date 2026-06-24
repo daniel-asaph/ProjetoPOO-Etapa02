@@ -207,6 +207,12 @@ public class Main {
     public static void cadastrarProfissional() {
         System.out.print("Nome: ");
         String nome = sc.nextLine();
+        System.out.print("CPF: ");
+        String cpf = sc.nextLine();
+        System.out.print("Telefone: ");
+        String telefone = sc.nextLine();
+        System.out.print("Idade: ");
+        int idade = Integer.parseInt(sc.nextLine());
         System.out.print("Especialidade (clinica geral/fisioterapia/psicologia/nutricao): ");
         String esp = sc.nextLine();
 
@@ -222,7 +228,7 @@ public class Main {
             if (esp.equals("fisioterapia")) {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, totalSessoes);
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, totalSessoes);
             }
             // else if (esp.equals("psicologia")) { ... }
             // else if (esp.equals("nutricao")) { ... }
@@ -236,7 +242,7 @@ public class Main {
             if (esp.equals("fisioterapia")) {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, reg, valor, totalSessoes);
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, null, 0, totalSessoes);
             }
             // else if (esp.equals("psicologia")) { ... }
             // else if (esp.equals("nutricao")) { ... }
@@ -257,7 +263,7 @@ public class Main {
             if (esp.equals("fisioterapia")) {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, esp, reg, valor, dias, qtd, totalSessoes);
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, dias, qtd, totalSessoes);
             }
             // else if (esp.equals("psicologia")) { ... }
             // else if (esp.equals("nutricao")) { ... }

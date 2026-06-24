@@ -15,7 +15,6 @@ public class Profissional extends Pessoa {
         this.totalDias = 0;
     }
 
-    
     public Profissional(String nome, String cpf, String telefone, int idade, 
                         String especialidade, String registroProfissional,
                         double valorConsulta, String[] dias, int totalDias) {

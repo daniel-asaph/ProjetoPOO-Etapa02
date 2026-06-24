@@ -8,6 +8,7 @@ public class Fisioterapeuta extends Profissional {
     }
 
     
+    
     public Fisioterapeuta(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, int totalSessoesPrevistas) {
         super(nome, cpf, telefone, idade, "fisioterapia", registroProfissional, valorConsulta, dias, totalDias);
         this.totalSessoesPrevistas = totalSessoesPrevistas;
