@@ -1,8 +1,14 @@
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
     static Paciente[] pacientes = new Paciente[100];
     static int totalPacientes = 0;
+
+    static Convenio saudePlus = new Convenio("SaudePlus", 40.0, new HashSet<String>(Arrays.asList("clinica geral", "psicologia")));
+    static Convenio vidaMais = new Convenio("VidaMais", 30.0, new HashSet<String>(Arrays.asList("clinica geral", "nutricao")));
+    static Convenio bemEstar = new Convenio("BemEstar", 50.0, new HashSet<String>(Arrays.asList("clinica geral", "fisioterapia")));
 
     static Profissional[] profissionais = new Profissional[50];
     static int totalProfissionais = 0;
@@ -106,7 +112,8 @@ public class Main {
             String tel = sc.nextLine();
             System.out.print("Convenio: ");
             String conv = sc.nextLine();
-            pacientes[totalPacientes] = new Paciente(nome, cpf, tel, idade, conv);
+            
+            pacientes[totalPacientes] = new Paciente(nome, cpf, tel, idade, conv.equals("SaudePlus") ? saudePlus : conv.equals("VidaMais") ? vidaMais : bemEstar);
         }
         totalPacientes++;
         System.out.println("Paciente cadastrado com sucesso!");
@@ -134,7 +141,7 @@ public class Main {
         } else {
             System.out.print("Convenio: ");
             String conv = sc.nextLine();
-            pacientes[idx].complementar(idade, tel, conv);
+            pacientes[idx].complementar(idade, tel, conv.equals("SaudePlus") ? saudePlus : conv.equals("VidaMais") ? vidaMais : bemEstar);
         }
         System.out.println("Cadastro atualizado!");
     }

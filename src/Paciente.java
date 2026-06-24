@@ -1,23 +1,23 @@
 public class Paciente extends Pessoa{
-    private String convenioNome;
+    private Convenio convenio;
     private boolean ativo;
 
     public Paciente(String nome, String cpf) {
         super(nome, cpf);
-        this.convenioNome = "";
+        this.convenio = null;
         this.ativo = true;
     }
 
     public Paciente(String nome, String cpf, String telefone, int idade) {
         super(nome, cpf, telefone, idade);
-        this.convenioNome = "";
+        this.convenio = null;
         this.ativo = true;
     }
 
     // construtor com todos os dados
-    public Paciente(String nome, String cpf, String telefone, int idade, String convenioNome) {
+    public Paciente(String nome, String cpf, String telefone, int idade, Convenio convenio) {
         super(nome, cpf, telefone, idade);
-        this.convenioNome = convenioNome;
+        this.convenio = convenio;
         this.ativo = true;
     }
 
@@ -28,22 +28,22 @@ public class Paciente extends Pessoa{
     }
 
     // atualiza tudo incluindo convenio
-    public void complementar(int idade, String telefone, String convenioNome) {
+    public void complementar(int idade, String telefone, Convenio convenio) {
         setIdade(idade);
         setTelefone(telefone);
-        this.convenioNome = convenioNome;
+        this.convenio = convenio;
     }
 
     public void desativar() {
         this.ativo = false;
     }
 
-    public String getConvenioNome() {
-        return convenioNome;
+    public Convenio getConvenioNome() {
+        return convenio;
     }
 
-    public void setConvenioNome(String convenioNome) {
-        this.convenioNome = convenioNome;
+    public void setConvenioNome(Convenio convenio) {
+        this.convenio = convenio;
     }
 
     public boolean isAtivo() {
@@ -61,7 +61,7 @@ public class Paciente extends Pessoa{
             status = "Nao";
         }
         return "Nome: " + getNome() + " | CPF: " + getCpf() + " | Idade: " + getIdade()
-                + " | Tel: " + getTelefone() + " | Convenio: " + convenioNome
+                + " | Tel: " + getTelefone() + " | Convenio: " + (convenio != null ? convenio.getNome() : "Nenhum")
                 + " | Ativo: " + status;
     }
 }
