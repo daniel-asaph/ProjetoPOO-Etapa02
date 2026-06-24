@@ -1,23 +1,20 @@
-public class Fisioterapeuta extends Profissional{
+public class Fisioterapeuta extends Profissional {
     private int totalSessoesPrevistas;
 
-    public Fisioterapeuta(String nome, String especialidade, int totalSessoesPrevistas) {
-        super(nome, especialidade);
+    
+    public Fisioterapeuta(String nome, String cpf, String telefone, int idade, int totalSessoesPrevistas) {
+        super(nome, cpf, telefone, idade, "fisioterapia"); 
         this.totalSessoesPrevistas = totalSessoesPrevistas;
     }
 
-    public Fisioterapeuta(String nome, String especialidade, String registroProfissional, double valorConsulta, int totalSessoesPrevistas) {
-        super(nome, especialidade, registroProfissional, valorConsulta);
-        this.totalSessoesPrevistas = totalSessoesPrevistas;
-    }
-
-    public Fisioterapeuta(String nome, String especialidade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, int totalSessoesPrevistas) {
-        super(nome, especialidade, registroProfissional, valorConsulta, dias, totalDias);
+    
+    public Fisioterapeuta(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, int totalSessoesPrevistas) {
+        super(nome, cpf, telefone, idade, "fisioterapia", registroProfissional, valorConsulta, dias, totalDias);
         this.totalSessoesPrevistas = totalSessoesPrevistas;
     }
 
     @Override
-    public void registrarEspecifico() {
+    public void registrarEspecifico(Object atendimento) {
         System.out.println("Total previsto de sessões: " + this.totalSessoesPrevistas);
     }
 
@@ -28,11 +25,13 @@ public class Fisioterapeuta extends Profissional{
             if (i > 0) dias = dias + ", ";
             dias = dias + getDiasDisponiveis()[i];
         }
+        
+        
         return "Fisioterapeuta: " + getNome() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias + " | Abordagem: " + getTotalSessoesPrevistas();
+                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias + " | Sessões Previstas: " + getTotalSessoesPrevistas();
     }
 
-
+    
     public int getTotalSessoesPrevistas() {
         return totalSessoesPrevistas;
     }
@@ -43,5 +42,4 @@ public class Fisioterapeuta extends Profissional{
         }
         this.totalSessoesPrevistas = totalSessoesPrevistas;
     }
-    
 }

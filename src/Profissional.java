@@ -1,13 +1,13 @@
-public abstract class Profissional extends Pessoa {
+public class Profissional extends Pessoa {
     private String especialidade;
     private String registroProfissional;
     private double valorConsulta;
     private String[] diasDisponiveis;
     private int totalDias;
 
-    // so nome e especialidade
-    public Profissional(String nome, String especialidade) {
-        super(nome);
+    
+    public Profissional(String nome, String cpf, String telefone, int idade, String especialidade) {
+        super(nome, cpf, telefone, idade); // Chama o construtor da classe Pessoa
         this.especialidade = especialidade;
         this.registroProfissional = "";
         this.valorConsulta = 0;
@@ -15,19 +15,11 @@ public abstract class Profissional extends Pessoa {
         this.totalDias = 0;
     }
 
-    public Profissional(String nome, String especialidade, String registroProfissional, double valorConsulta) {
-        super(nome);
-        this.especialidade = especialidade;
-        this.registroProfissional = registroProfissional;
-        this.valorConsulta = valorConsulta;
-        this.diasDisponiveis = new String[7];
-        this.totalDias = 0;
-    }
-
-    // construtor completo com dias
-    public Profissional(String nome, String especialidade, String registroProfissional,
+    
+    public Profissional(String nome, String cpf, String telefone, int idade, 
+                        String especialidade, String registroProfissional,
                         double valorConsulta, String[] dias, int totalDias) {
-        super(nome);
+        super(nome, cpf, telefone, idade);
         this.especialidade = especialidade;
         this.registroProfissional = registroProfissional;
         this.valorConsulta = valorConsulta;
@@ -52,7 +44,7 @@ public abstract class Profissional extends Pessoa {
         }
     }
 
-    // verifica se o profissional atende naquele dia
+    
     public boolean atendeNoDia(String dia) {
         for (int i = 0; i < totalDias; i++) {
             if (diasDisponiveis[i].equals(dia)) {
@@ -62,7 +54,7 @@ public abstract class Profissional extends Pessoa {
         return false;
     }
 
-    // valida as especialidades aceitas pela clinica
+    
     public static boolean especialidadeValida(String esp) {
         if (esp.equals("clinica geral")) return true;
         if (esp.equals("fisioterapia")) return true;
@@ -71,23 +63,6 @@ public abstract class Profissional extends Pessoa {
         return false;
     }
 
-    public abstract void registrarEspecifico();
-
-    public String getEspecialidade() { 
-        return especialidade; 
-    }
-    public String getRegistroProfissional() { 
-        return registroProfissional; 
-    }
-    public double getValorConsulta() { 
-        return valorConsulta; 
-    }
-    public int getTotalDias() { 
-        return totalDias; 
-    }
-    public String[] getDiasDisponiveis() { 
-        return diasDisponiveis; 
-    }
 
     @Override
     public String exibirResumo() {
@@ -96,7 +71,56 @@ public abstract class Profissional extends Pessoa {
             if (i > 0) dias = dias + ", ";
             dias = dias + diasDisponiveis[i];
         }
-        return "Nome: " + getNome() + " | Espec: " + getEspecialidade() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias;
+        
+        
+        return "Nome: " + this.nome + " | Espec: " + especialidade + " | Reg: " + registroProfissional
+                + " | Valor: R$" + valorConsulta + " | Dias: " + dias;
+    }
+
+    
+    public void registrarEspecifico(Object atendimento) {
+        // Vazio na classe base
+    }
+
+    
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public String getRegistroProfissional() {
+        return registroProfissional;
+    }
+
+    public void setRegistroProfissional(String registroProfissional) {
+        this.registroProfissional = registroProfissional;
+    }
+
+    public double getValorConsulta() {
+        return valorConsulta;
+    }
+
+    public void setValorConsulta(double valorConsulta) {
+        this.valorConsulta = valorConsulta;
+    }
+
+    public String[] getDiasDisponiveis() {
+        return diasDisponiveis;
+    }
+
+    public void setDiasDisponiveis(String[] diasDisponiveis) {
+        this.diasDisponiveis = diasDisponiveis;
+    }
+
+    public int getTotalDias() {
+        return totalDias;
+    }
+
+    public void setTotalDias(int totalDias) {
+        this.totalDias = totalDias;
     }
 }
