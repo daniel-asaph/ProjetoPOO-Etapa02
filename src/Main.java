@@ -237,7 +237,11 @@ public class Main {
                 int totalSessoes = Integer.parseInt(sc.nextLine());
                 profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, totalSessoes);
             }
-            // else if (esp.equals("psicologia")) { ... }
+            else if (esp.equals("psicologia")) {
+                System.out.print("Abordagem: ");
+                String abordagem = sc.nextLine();
+                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, abordagem);
+            }
             // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
         } else if (tipo == 2) {
@@ -245,16 +249,21 @@ public class Main {
             String reg = sc.nextLine();
             System.out.print("Valor consulta: ");
             double valor = Double.parseDouble(sc.nextLine());
+        
 
             if (esp.equals("fisioterapia")) {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
                 profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, null, 0, totalSessoes);
             }
-            // else if (esp.equals("psicologia")) { ... }
+            else if (esp.equals("psicologia")) {
+                System.out.print("Abordagem: ");
+                String abordagem = sc.nextLine();
+                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, reg, valor, null, 0, abordagem);
             // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
             
+        } 
         } else {
             System.out.print("Registro: ");
             String reg = sc.nextLine();
@@ -272,8 +281,12 @@ public class Main {
                 int totalSessoes = Integer.parseInt(sc.nextLine());
                 profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, dias, qtd, totalSessoes);
             }
-            // else if (esp.equals("psicologia")) { ... }
-            // else if (esp.equals("nutricao")) { ... }
+            else if (esp.equals("psicologia")) {
+                System.out.print("Abordagem: ");
+                String abordagem = sc.nextLine();
+                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, reg, valor, dias, qtd, abordagem);
+            }
+                // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
         }
         totalProfissionais++;
