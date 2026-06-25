@@ -245,6 +245,9 @@ public class Main {
             else if (esp.equals("nutricao")) {
                 profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, null);
             }
+            else if (esp.equals("clinica geral")) {
+                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, null);
+            }
             // else if (esp.equals("clinica geral")) { ... }
         } else if (tipo == 2) {
             System.out.print("Registro: ");
@@ -265,6 +268,9 @@ public class Main {
             }
             else if (esp.equals("nutricao")) {
                 profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, reg, valor, null, 0, null);
+            }
+            else if (esp.equals("clinica geral")) {
+                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, null, 0, null);
             }
             // else if (esp.equals("clinica geral")) { ... }
             
@@ -292,6 +298,9 @@ public class Main {
             }
             else if (esp.equals("nutricao")) {
                 profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, reg, valor, dias, qtd, null);
+            }
+            else if (esp.equals("clinica geral")) {
+                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, dias, qtd, null);
             }
                 // else if (esp.equals("nutricao")) { ... }
             // else if (esp.equals("clinica geral")) { ... }
