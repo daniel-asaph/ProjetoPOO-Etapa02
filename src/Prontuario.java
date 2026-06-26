@@ -7,15 +7,14 @@ public class Prontuario {
     // encapsulamento todos os atributos em private
     private String observacoes;
     private String diagnosticoDoPaciente;
-    private List<String> procedimentosRealizados; //  colecao no lugar de arrays
+    private List<String> procedimentoRealizados; //  colecao no lugar de arrays
     private LocalDate dataCriacao;
 
-    // R8
     Prontuario(String observacoes, String diagnosticoDoPaciente) {
         this.observacoes = observacoes;
         this.diagnosticoDoPaciente = diagnosticoDoPaciente;
         this.dataCriacao = LocalDate.now();// registra data atual do sistema
-        this.procedimentosRealizados = new ArrayList<>();// comeca a lista vazia
+        this.procedimentoRealizados = new ArrayList<>();// comeca a lista vazia
     }
 
     //getters
@@ -31,9 +30,9 @@ public class Prontuario {
         return dataCriacao;
     }
 
-    public List<String> getprocedimentosRealizados() {
-        return procedimentosRealizados;
-    }
+   public List<String> getProcedimentosRealizados() {
+    return new ArrayList<>(procedimentoRealizados);
+}
 
     //setters com validacao interna
     public void setObservacoes(String observacoes) {
@@ -52,9 +51,9 @@ public class Prontuario {
         this.diagnosticoDoPaciente = diagnosticoDoPaciente;
     }
 
-    public void adicionarProcedimentos(String procedimentos) {
-        if (procedimentos != null && !procedimentos.trim().isEmpty()) {
-            this.procedimentosRealizados.add(procedimentos);
+    public void adicionarProcedimento (String procedimento) {
+        if (procedimento != null && !procedimento.trim().isEmpty()) {
+            this.procedimentoRealizados.add(procedimento);
         } else {
             System.out.println("Erro: Procedimento inválido.");
         }
