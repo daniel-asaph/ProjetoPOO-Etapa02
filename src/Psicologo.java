@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Psicologo extends Profissional {
     private String abordagem;
 
@@ -9,8 +11,8 @@ public class Psicologo extends Profissional {
 
     
     
-    public Psicologo(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, String abordagem) {
-        super(nome, cpf, telefone, idade, "psicologo", registroProfissional, valorConsulta, dias, totalDias);
+    public Psicologo(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, String abordagem) {
+        super(nome, cpf, telefone, idade, "psicologo", registroProfissional, valorConsulta, horarios);
         this.abordagem = abordagem;
     }
 
@@ -21,15 +23,9 @@ public class Psicologo extends Profissional {
 
     @Override
     public String exibirResumo() {
-        String dias = "";
-        for (int i = 0; i < getTotalDias(); i++) {
-            if (i > 0) dias = dias + ", ";
-            dias = dias + getDiasDisponiveis()[i];
-        }
-        
-        
         return "Psicologo: " + getNome() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias + " | Abordagem: " + getAbordagem();
+                + " | Valor: R$" + getValorConsulta() + " | Horários: " + getHorariosDisponiveis().toString()
+                + " | Abordagem: " + getAbordagem();
     }
 
     

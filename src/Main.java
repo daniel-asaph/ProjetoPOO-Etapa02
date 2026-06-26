@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -259,51 +260,53 @@ public class Main {
             if (esp.equals("fisioterapia")) {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, null, 0, totalSessoes);
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, null, totalSessoes);
             }
             else if (esp.equals("psicologia")) {
                 System.out.print("Abordagem: ");
                 String abordagem = sc.nextLine();
-                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, reg, valor, null, 0, abordagem);
+                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, reg, valor, null, abordagem);
             }
             else if (esp.equals("nutricao")) {
-                profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, reg, valor, null, 0, null);
+                profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, reg, valor, null, null);
             }
             else if (esp.equals("clinica geral")) {
-                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, null, 0, null);
+                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, null, null);
             }
-            // else if (esp.equals("clinica geral")) { ... }
             
         } else {
             System.out.print("Registro: ");
             String reg = sc.nextLine();
             System.out.print("Valor consulta: ");
             double valor = Double.parseDouble(sc.nextLine());
-            System.out.print("Quantos dias atende? ");
+            System.out.print("Quantos horários/turnos atende? ");
             int qtd = Integer.parseInt(sc.nextLine());
-            String[] dias = new String[7];
+            List<HorarioDisponivel> listaHorarios = new java.util.ArrayList<>();
+
             for (int i = 0; i < qtd; i++) {
-                System.out.print("Dia " + (i+1) + ": ");
-                dias[i] = sc.nextLine();
+                System.out.print("Dia do horário " + (i+1) + " (ex: segunda): ");
+                String dia = sc.nextLine();
+                System.out.print("Turno do horário " + (i+1) + " (manhã/tarde): ");
+                String turno = sc.nextLine();
+                
+                listaHorarios.add(new HorarioDisponivel(dia, turno));
             }
             if (esp.equals("fisioterapia")) {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
-                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, dias, qtd, totalSessoes);
+                profissionais[totalProfissionais] = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, listaHorarios, totalSessoes);
             }
             else if (esp.equals("psicologia")) {
                 System.out.print("Abordagem: ");
                 String abordagem = sc.nextLine();
-                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, reg, valor, dias, qtd, abordagem);
+                profissionais[totalProfissionais] = new Psicologo(nome, cpf, telefone, idade, reg, valor, listaHorarios, abordagem);
             }
             else if (esp.equals("nutricao")) {
-                profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, reg, valor, dias, qtd, null);
+                profissionais[totalProfissionais] = new Nutricionista(nome, cpf, telefone, idade, reg, valor, listaHorarios, null);
             }
             else if (esp.equals("clinica geral")) {
-                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, dias, qtd, null);
+                profissionais[totalProfissionais] = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, listaHorarios, null);
             }
-                // else if (esp.equals("nutricao")) { ... }
-            // else if (esp.equals("clinica geral")) { ... }
         }
         totalProfissionais++;
         System.out.println("Profissional cadastrado!");
@@ -329,14 +332,19 @@ public class Main {
         if (tipo == 1) {
             profissionais[idx].atualizar(reg, valor);
         } else {
-            System.out.print("Quantos dias? ");
+            System.out.print("Quantos horários/turnos atende? ");
             int qtd = Integer.parseInt(sc.nextLine());
-            String[] dias = new String[7];
+            List<HorarioDisponivel> listaHorarios = new java.util.ArrayList<>();
+
             for (int i = 0; i < qtd; i++) {
-                System.out.print("Dia " + (i+1) + ": ");
-                dias[i] = sc.nextLine();
+                System.out.print("Dia do horário " + (i+1) + " (ex: segunda): ");
+                String dia = sc.nextLine();
+                System.out.print("Turno do horário " + (i+1) + " (manhã/tarde): ");
+                String turno = sc.nextLine();
+                
+                listaHorarios.add(new HorarioDisponivel(dia, turno));
             }
-            profissionais[idx].atualizar(reg, valor, dias, qtd);
+            profissionais[idx].atualizar(reg, valor, listaHorarios);
         }
         System.out.println("Profissional atualizado!");
     }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class ClinicoGeral extends Profissional {
     private String encaminhamento;
 
@@ -9,8 +11,8 @@ public class ClinicoGeral extends Profissional {
 
     
     
-    public ClinicoGeral(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, String encaminhamento) {
-        super(nome, cpf, telefone, idade, "clinico geral", registroProfissional, valorConsulta, dias, totalDias);
+    public ClinicoGeral(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, String encaminhamento) {
+        super(nome, cpf, telefone, idade, "clinico geral", registroProfissional, valorConsulta, horarios);
         this.encaminhamento = encaminhamento;
     }
 
@@ -21,15 +23,8 @@ public class ClinicoGeral extends Profissional {
 
     @Override
     public String exibirResumo() {
-        String dias = "";
-        for (int i = 0; i < getTotalDias(); i++) {
-            if (i > 0) dias = dias + ", ";
-            dias = dias + getDiasDisponiveis()[i];
-        }
-        
-        
         return "ClinicoGeral: " + getNome() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias ;
+                + " | Valor: R$" + getValorConsulta() + " | Dias: " + getHorariosDisponiveis().toString();
     }
 
     

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Fisioterapeuta extends Profissional {
     private int totalSessoesPrevistas;
 
@@ -9,8 +11,8 @@ public class Fisioterapeuta extends Profissional {
 
     
     
-    public Fisioterapeuta(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, int totalSessoesPrevistas) {
-        super(nome, cpf, telefone, idade, "fisioterapia", registroProfissional, valorConsulta, dias, totalDias);
+    public Fisioterapeuta(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, int totalSessoesPrevistas) {
+        super(nome, cpf, telefone, idade, "fisioterapia", registroProfissional, valorConsulta, horarios);
         this.totalSessoesPrevistas = totalSessoesPrevistas;
     }
 
@@ -21,15 +23,9 @@ public class Fisioterapeuta extends Profissional {
 
     @Override
     public String exibirResumo() {
-        String dias = "";
-        for (int i = 0; i < getTotalDias(); i++) {
-            if (i > 0) dias = dias + ", ";
-            dias = dias + getDiasDisponiveis()[i];
-        }
-        
-        
         return "Fisioterapeuta: " + getNome() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias + " | Sessões Previstas: " + getTotalSessoesPrevistas();
+                + " | Valor: R$" + getValorConsulta() + " | Horários: " + getHorariosDisponiveis().toString()
+                + " | Sessões Previstas: " + getTotalSessoesPrevistas();
     }
 
     

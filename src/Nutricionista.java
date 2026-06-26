@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Nutricionista extends Profissional {
     private String planoAlimentar;
 
@@ -9,8 +11,8 @@ public class Nutricionista extends Profissional {
 
     
     
-    public Nutricionista(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, String[] dias, int totalDias, String planoAlimentar) {
-        super(nome, cpf, telefone, idade, "nutricionista", registroProfissional, valorConsulta, dias, totalDias);
+    public Nutricionista(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, String planoAlimentar) {
+        super(nome, cpf, telefone, idade, "nutricionista", registroProfissional, valorConsulta, horarios);
         this.planoAlimentar = planoAlimentar;
     }
 
@@ -21,15 +23,9 @@ public class Nutricionista extends Profissional {
 
     @Override
     public String exibirResumo() {
-        String dias = "";
-        for (int i = 0; i < getTotalDias(); i++) {
-            if (i > 0) dias = dias + ", ";
-            dias = dias + getDiasDisponiveis()[i];
-        }
-        
-        
+
         return "Nutricionista: " + getNome() + " | Reg: " + getRegistroProfissional()
-                + " | Valor: R$" + getValorConsulta() + " | Dias: " + dias ;
+                + " | Valor: R$" + getValorConsulta() + " | Horários: " + getHorariosDisponiveis().toString();
     }
 
     
