@@ -5,14 +5,14 @@ public class Nutricionista extends Profissional {
 
     
     public Nutricionista(String nome, String cpf, String telefone, int idade, String planoAlimentar) {
-        super(nome, cpf, telefone, idade, "psicologo"); 
+        super(nome, cpf, telefone, idade, "nutricao"); 
         this.planoAlimentar = planoAlimentar ;
     }
 
     
     
     public Nutricionista(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, String planoAlimentar) {
-        super(nome, cpf, telefone, idade, "nutricionista", registroProfissional, valorConsulta, horarios);
+        super(nome, cpf, telefone, idade, "nutricao", registroProfissional, valorConsulta, horarios);
         this.planoAlimentar = planoAlimentar;
     }
 

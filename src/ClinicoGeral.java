@@ -5,14 +5,14 @@ public class ClinicoGeral extends Profissional {
 
     
     public ClinicoGeral(String nome, String cpf, String telefone, int idade, String encaminhamento) {
-        super(nome, cpf, telefone, idade, "clinico geral"); 
+        super(nome, cpf, telefone, idade, "clinica geral"); 
         this.encaminhamento = encaminhamento ;
     }
 
     
     
     public ClinicoGeral(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, String encaminhamento) {
-        super(nome, cpf, telefone, idade, "clinico geral", registroProfissional, valorConsulta, horarios);
+        super(nome, cpf, telefone, idade, "clinica geral", registroProfissional, valorConsulta, horarios);
         this.encaminhamento = encaminhamento;
     }
 
@@ -23,7 +23,7 @@ public class ClinicoGeral extends Profissional {
 
     @Override
     public String exibirResumo() {
-        return "ClinicoGeral: " + getNome() + " | Reg: " + getRegistroProfissional()
+        return "Clinico Geral: " + getNome() + " | Reg: " + getRegistroProfissional()
                 + " | Valor: R$" + getValorConsulta() + " | Dias: " + getHorariosDisponiveis().toString();
     }
 

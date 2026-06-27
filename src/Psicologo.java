@@ -5,14 +5,14 @@ public class Psicologo extends Profissional {
 
     
     public Psicologo(String nome, String cpf, String telefone, int idade, String abordagem) {
-        super(nome, cpf, telefone, idade, "psicologo"); 
+        super(nome, cpf, telefone, idade, "psicologia"); 
         this.abordagem = abordagem ;
     }
 
     
     
     public Psicologo(String nome, String cpf, String telefone, int idade, String registroProfissional, double valorConsulta, List<HorarioDisponivel> horarios, String abordagem) {
-        super(nome, cpf, telefone, idade, "psicologo", registroProfissional, valorConsulta, horarios);
+        super(nome, cpf, telefone, idade, "psicologia", registroProfissional, valorConsulta, horarios);
         this.abordagem = abordagem;
     }
 
