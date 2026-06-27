@@ -64,7 +64,7 @@ public class Atendimento implements Exportavel {
     public Prontuario getProntuario() {
         return prontuario;
     }
-
+    // SOBRESCRITA
     @Override
     public String exportarDados() {
         String procs = prontuario.getProcedimentosRealizados() != null ? 

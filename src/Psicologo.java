@@ -15,7 +15,7 @@ public class Psicologo extends Profissional {
         super(nome, cpf, telefone, idade, "psicologia", registroProfissional, valorConsulta, horarios);
         this.abordagem = abordagem;
     }
-
+    // SOBRESCRITA
     @Override
     public void registrarEspecifico(Atendimento atendimento) {
         if (atendimento != null && atendimento.getProntuario() != null) {
@@ -24,7 +24,7 @@ public class Psicologo extends Profissional {
             atendimento.getProntuario().setObservacoes(obsAtual + " | Abordagem Terapêutica: " + this.abordagem);
         }
     }
-
+    // SOBRESCRITA
     @Override
     public String exibirResumo() {
         return "Psicologo: " + getNome() + " | Reg: " + getRegistroProfissional()

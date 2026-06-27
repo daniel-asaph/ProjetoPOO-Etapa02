@@ -57,6 +57,10 @@ public abstract class Pessoa {
         return idade;
     }
     public void setIdade(int idade){
+        if (idade < 0) {
+        System.out.println("Idade não pode ser negativa.");
+        return;
+        }
         this.idade = idade;
     }
 

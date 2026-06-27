@@ -110,4 +110,12 @@ public class Relatorio {
         int ano = Integer.parseInt(data.substring(6, 10));
         return ano * 10000 + mes * 100 + dia;
     }
+
+    public static void relatorioUnificado(List<Pessoa> todasAsPessoas) {
+        System.out.println("\n=== RELATORIO UNIFICADO DE PESSOAS ===");
+        for (Pessoa pessoa : todasAsPessoas) {
+            System.out.println(pessoa.exibirResumo());
+        }
+
+    }
 }

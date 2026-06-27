@@ -45,7 +45,7 @@ public abstract class Pagamento implements Exportavel {
         }
         return resumo;
     }
-
+    // SOBRESCRITA
     @Override
     public String exportarDados() {
         return "TIPO:Pagamento | CONSULTA DO PACIENTE (CPF):" + consulta.getCpfPaciente() +

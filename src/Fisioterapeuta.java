@@ -15,7 +15,7 @@ public class Fisioterapeuta extends Profissional {
         super(nome, cpf, telefone, idade, "fisioterapia", registroProfissional, valorConsulta, horarios);
         this.totalSessoesPrevistas = totalSessoesPrevistas;
     }
-
+    // SOBRESCRITA
     @Override
     public void registrarEspecifico(Atendimento atendimento) {
         if (atendimento != null && atendimento.getProntuario() != null) {
@@ -24,7 +24,7 @@ public class Fisioterapeuta extends Profissional {
             atendimento.getProntuario().setObservacoes(obsAtual + " | Total de Sessões Previstas: " + this.totalSessoesPrevistas);
         }
     }
-
+    // SOBRESCRITA
     @Override
     public String exibirResumo() {
         return "Fisioterapeuta: " + getNome() + " | Reg: " + getRegistroProfissional()

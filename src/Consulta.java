@@ -66,7 +66,7 @@ public class Consulta implements Agendavel, Exportavel {
         this.status = "Cancelada";
         return "Consulta cancelada. Motivo: " + motivo;
     }
-
+    // SOBRESCRITA 
     @Override
     public void remarcar() {
         this.status = "Remarcada";
@@ -82,7 +82,7 @@ public class Consulta implements Agendavel, Exportavel {
                 + " | Data: " + data + " | Hora: " + horario
                 + " | Tipo: " + tipo + " | Status: " + status;
     }
-
+    // SOBRESCRITA
     @Override
     public String exportarDados() {
         return "TIPO:Consulta | CPF_PACIENTE:" + getCpfPaciente() + 

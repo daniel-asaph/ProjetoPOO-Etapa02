@@ -1,4 +1,5 @@
 public class Paciente extends Pessoa{
+    // ASSOCIAÇÃO: Paciente conhece Convenio, mas ambos existem independentemente
     private Convenio convenio;
     private boolean ativo;
 
@@ -7,7 +8,7 @@ public class Paciente extends Pessoa{
         this.convenio = null;
         this.ativo = true;
     }
-
+    
     public Paciente(String nome, String cpf, String telefone, int idade) {
         super(nome, cpf, telefone, idade);
         this.convenio = null;

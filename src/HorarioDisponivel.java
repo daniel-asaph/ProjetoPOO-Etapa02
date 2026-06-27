@@ -30,7 +30,7 @@ public class HorarioDisponivel {
             System.out.println("Turno inválido. Escolha entre 'manha' ou 'tarde'.");
         }
     }
-
+    // SOBRESCRITA
     @Override
     public String toString() {
         return diaSemana + " (" + turno + ")";

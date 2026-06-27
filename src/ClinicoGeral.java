@@ -15,7 +15,7 @@ public class ClinicoGeral extends Profissional {
         super(nome, cpf, telefone, idade, "clinica geral", registroProfissional, valorConsulta, horarios);
         this.encaminhamento = encaminhamento;
     }
-
+    // SOBRESCRITA
     @Override
     public void registrarEspecifico(Atendimento atendimento) {
         if (atendimento != null && atendimento.getProntuario() != null) {
@@ -24,7 +24,7 @@ public class ClinicoGeral extends Profissional {
             atendimento.getProntuario().setObservacoes(obsAtual + " | Encaminhamento: " + this.encaminhamento);
         }
     }
-
+    // SOBRESCRITA
     @Override
     public String exibirResumo() {
         return "Clinico Geral: " + getNome() + " | Reg: " + getRegistroProfissional()

@@ -15,7 +15,7 @@ public class Nutricionista extends Profissional {
         super(nome, cpf, telefone, idade, "nutricao", registroProfissional, valorConsulta, horarios);
         this.planoAlimentar = planoAlimentar;
     }
-
+    // SOBRESCRITA
     @Override
     public void registrarEspecifico(Atendimento atendimento) {
         if (atendimento != null && atendimento.getProntuario() != null) {
@@ -24,7 +24,7 @@ public class Nutricionista extends Profissional {
             atendimento.getProntuario().setObservacoes(obsAtual + " | Plano Alimentar: " + this.planoAlimentar);
         }
     }
-
+    // SOBRESCRITA
     @Override
     public String exibirResumo() {
 

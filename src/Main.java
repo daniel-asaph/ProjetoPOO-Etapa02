@@ -7,14 +7,20 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
+
+
+
+    private static List<Pessoa> todasAsPessoas = new ArrayList<>();
+
+    // HashMap<String, Paciente>: busca por chave (cpf)
     private static Map<String, Paciente> pacientesMap = new HashMap<>();
+    private static Map<String, Profissional> profissionaisMap = new HashMap<>();
 
     static Convenio saudePlus = new Convenio("SaudePlus", 40.0, new HashSet<String>(Arrays.asList("clinica geral", "psicologia")));
     static Convenio vidaMais = new Convenio("VidaMais", 30.0, new HashSet<String>(Arrays.asList("clinica geral", "nutricao")));
     static Convenio bemEstar = new Convenio("BemEstar", 50.0, new HashSet<String>(Arrays.asList("clinica geral", "fisioterapia")));
 
-    private static Map<String, Profissional> profissionaisMap = new HashMap<>();
-
+    // ArrayList<>: ordem de inserção importa - acesso por índice necessário
     private static List<Consulta> consultas = new ArrayList<>();
     private static List<Atendimento> atendimentos = new ArrayList<>();
     private static List<Pagamento> pagamentos = new ArrayList<>();
@@ -95,6 +101,7 @@ public class Main {
         if (tipo == 1) {
             Paciente novoPaciente = new Paciente(nome, cpf);
             pacientesMap.put(novoPaciente.getCpf(), novoPaciente);
+            todasAsPessoas.add(novoPaciente);
         } else if (tipo == 2) {
             System.out.print("Idade: ");
             int idade = Integer.parseInt(sc.nextLine());
@@ -102,6 +109,7 @@ public class Main {
             String tel = sc.nextLine();
             Paciente novoPaciente = new Paciente(nome, cpf, tel, idade);
             pacientesMap.put(novoPaciente.getCpf(), novoPaciente);
+            todasAsPessoas.add(novoPaciente);
         } else {
             System.out.print("Idade: ");
             int idade = Integer.parseInt(sc.nextLine());
@@ -112,6 +120,7 @@ public class Main {
             
             Paciente novoPaciente = new Paciente(nome, cpf, tel, idade, conv.equals("SaudePlus") ? saudePlus : conv.equals("VidaMais") ? vidaMais : conv.equals("BemEstar") ? bemEstar : null);
             pacientesMap.put(novoPaciente.getCpf(), novoPaciente);
+            todasAsPessoas.add(novoPaciente);
         }
         
         System.out.println("Paciente cadastrado com sucesso!");
@@ -228,21 +237,25 @@ public class Main {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
                 Profissional profissionalSelecionado = new Fisioterapeuta(nome, cpf, telefone, idade, totalSessoes);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("psicologia")) {
                 System.out.print("Abordagem: ");
                 String abordagem = sc.nextLine();
                 Profissional profissionalSelecionado = new Psicologo(nome, cpf, telefone, idade, abordagem);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("nutricao")) {
                 Profissional profissionalSelecionado = new Nutricionista(nome, cpf, telefone, idade, null);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("clinica geral")) {
                 Profissional profissionalSelecionado = new ClinicoGeral(nome, cpf, telefone, idade, null);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             // else if (esp.equals("clinica geral")) { ... }
         } else if (tipo == 2) {
@@ -256,21 +269,25 @@ public class Main {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
                 Profissional profissionalSelecionado = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, null, totalSessoes);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("psicologia")) {
                 System.out.print("Abordagem: ");
                 String abordagem = sc.nextLine();
                 Profissional profissionalSelecionado = new Psicologo(nome, cpf, telefone, idade, reg, valor, null,  abordagem);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("nutricao")) {
                 Profissional profissionalSelecionado = new Nutricionista(nome, cpf, telefone, idade, reg, valor, null, null);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("clinica geral")) {
                 Profissional profissionalSelecionado = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, null, null);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             
         } else {
@@ -294,21 +311,25 @@ public class Main {
                 System.out.print("Total de sessoes padrao: ");
                 int totalSessoes = Integer.parseInt(sc.nextLine());
                 Profissional profissionalSelecionado = new Fisioterapeuta(nome, cpf, telefone, idade, reg, valor, listaHorarios, totalSessoes);
-                profissionaisMap.put(cpf, profissionalSelecionado);
+                profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("psicologia")) {
                 System.out.print("Abordagem: ");
                 String abordagem = sc.nextLine();
                 Profissional profissionalSelecionado = new Psicologo(nome, cpf, telefone, idade, reg, valor, listaHorarios, abordagem);
                 profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("nutricao")) {
                 Profissional profissionalSelecionado = new Nutricionista(nome, cpf, telefone, idade, reg, valor, listaHorarios,null);
                 profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
             else if (esp.equals("clinica geral")) {
                 Profissional profissionalSelecionado = new ClinicoGeral(nome, cpf, telefone, idade, reg, valor, listaHorarios,null);
                 profissionaisMap.put(nome, profissionalSelecionado);
+                todasAsPessoas.add(profissionalSelecionado);
             }
         }
         System.out.println("Profissional cadastrado!");
@@ -545,11 +566,11 @@ public class Main {
             System.out.println("Consulta nao encontrada.");
             return;
         }
-        if (consultas.get(idx).getStatus().equals("realizada")) {
+        if (consultas.get(idx).getStatus().equals("Realizada")) {
             System.out.println("Consulta ja realizada. Nao pode cancelar.");
             return;
         }
-        if (consultas.get(idx).getStatus().equals("cancelada")) {
+        if (consultas.get(idx).getStatus().equals("Cancelada")) {
             System.out.println("Consulta ja cancelada.");
             return;
         }
@@ -734,14 +755,25 @@ public class Main {
     }
 
     public static void registrarAtendimento() {
-        System.out.print("Indice da consulta: ");
-        int idxConsulta = Integer.parseInt(sc.nextLine());
+        System.out.print("CPF da consulta: ");
+        String cpf = sc.nextLine();
 
-        if (idxConsulta < 0 || idxConsulta >= consultas.size()) {
-            System.out.println("Indice invalido.");
+        int idxConsulta = -1;
+        for (int i = 0; i < consultas.size(); i++) {
+            if (consultas.get(i).getCpfPaciente().equals(cpf)) {
+                idxConsulta = i;
+                break;
+            }
+        }
+
+        if (idxConsulta == -1) {
+            System.out.println("Consulta nao encontrada.");
             return;
         }
-        if (!consultas.get(idxConsulta).getStatus().equals("Agendada")) {
+
+        Consulta consultaSelecionada = consultas.get(idxConsulta);
+
+        if (!consultaSelecionada.getStatus().equals("Agendada")) {
             System.out.println("So pode registrar atendimento em consulta agendada.");
             return;
         }
@@ -755,13 +787,11 @@ public class Main {
         Atendimento atendimento = null;
         if (tipo == 1) {
             atendimento = new Atendimento(consultas.get(idxConsulta), obs);
-            atendimentos.add(atendimento);
 
         } else if (tipo == 2) {
             System.out.print("Diagnostico: ");
             String diag = sc.nextLine();
             atendimento = new Atendimento(consultas.get(idxConsulta), obs, diag);
-            atendimentos.add(atendimento);
 
         } else {
             System.out.print("Diagnostico: ");
@@ -793,10 +823,33 @@ public class Main {
                 }
             }
             atendimento = new Atendimento(consultas.get(idxConsulta), obs, diag, procs);
-            atendimentos.add(atendimento);
+
+        }
+        Profissional prof = profissionaisMap.get(consultaSelecionada.getNomeProfissional());
+        if (prof != null) {
+            // DYNAMIC CASTING
+            if (prof instanceof Nutricionista) {
+                System.out.print("Digite o Plano Alimentar para o prontuário deste paciente: ");
+                String plano = sc.nextLine();
+                
+                Nutricionista nutri = (Nutricionista) prof;
+                nutri.setPlanoAlimentar(plano);
+                
+            } else if (prof instanceof ClinicoGeral) {
+                System.out.print("Digite o Encaminhamento para o prontuário deste paciente: ");
+                String encaminhamento = sc.nextLine();
+                
+                ClinicoGeral clinico = (ClinicoGeral) prof;
+                clinico.setEncaminhamento(encaminhamento);
+            }
+            
+            // LIGAÇÃO DINÂMICA
+            prof.registrarEspecifico(atendimento);
         }
 
-        consultas.get(idxConsulta).realizar();
+        // Salva o atendimento na lista dinâmica e conclui o processo
+        atendimentos.add(atendimento);
+        consultaSelecionada.realizar();
         System.out.println("\n--- RESUMO ---");
         System.out.println(atendimentos.get(atendimentos.size() - 1).exibirResumo());
         System.out.println("Consulta marcada como realizada.");
@@ -826,11 +879,19 @@ public class Main {
     }
 
     public static void pagamentoDireto() {
-        System.out.print("Indice da consulta: ");
-        int idxConsulta = Integer.parseInt(sc.nextLine());
+        System.out.print("CPF da consulta: ");
+        String cpf = sc.nextLine();
 
-        if (idxConsulta < 0 || idxConsulta >= consultas.size()) {
-            System.out.println("Indice invalido.");
+        int idxConsulta = -1;
+        for (int i = 0; i < consultas.size(); i++) {
+            if (consultas.get(i).getCpfPaciente().equals(cpf)) {
+                idxConsulta = i;
+                break;
+            }
+        }
+
+        if (idxConsulta == -1) {
+            System.out.println("Consulta nao encontrada.");
             return;
         }
         Consulta consultaSelecionada = consultas.get(idxConsulta);
@@ -875,11 +936,19 @@ public class Main {
     }
 
     public static void pagamentoAutomatico() {
-        System.out.print("Indice da consulta: ");
-        int idxConsulta = Integer.parseInt(sc.nextLine());
+        System.out.print("CPF da consulta: ");
+        String cpf = sc.nextLine();
 
-        if (idxConsulta < 0 || idxConsulta >= consultas.size()) {
-            System.out.println("Indice invalido.");
+        int idxConsulta = -1;
+        for (int i = 0; i < consultas.size(); i++) {
+            if (consultas.get(i).getCpfPaciente().equals(cpf)) {
+                idxConsulta = i;
+                break;
+            }
+        }
+
+        if (idxConsulta == -1) {
+            System.out.println("Consulta nao encontrada.");
             return;
         }
 
@@ -891,7 +960,8 @@ public class Main {
 
         // verifica convenio e tipo
         String cpfPac = consultaSelecionada.getCpfPaciente();
-        boolean temConvenio = !pacientesMap.get(cpfPac).getConvenioNome().equals("");
+        Convenio conv = pacientesMap.get(cpfPac).getConvenioNome();
+        boolean temConvenio = conv != null;
         boolean ehRetorno = consultaSelecionada.getTipo().equals("retorno");
 
         double desconto = 0;
@@ -932,9 +1002,15 @@ public class Main {
             pagamentos.add(pagamento);
             double vlrParc = Math.round((valorFinal / parc) * 100.0) / 100.0;
             System.out.println("Pagamento em " + parc + "x de R$" + vlrParc);
-        } else {
+        } else if (tipoPag.equals("dinheiro")) {
             pagamento = new PagamentoDinheiro(consultaSelecionada, valorFinal);
             pagamentos.add(pagamento);
+        } else if (tipoPag.equals("convenio")){
+            pagamento = new PagamentoConvenio(consultaSelecionada, valorBase, conv);
+            pagamentos.add(pagamento);
+        } else {
+            System.out.println("Tipo de pagamento invalido.");
+            return;
         }
 
         System.out.println("Pagamento registrado!");
@@ -960,9 +1036,13 @@ public class Main {
             System.out.println("2 - Por profissional");
             System.out.println("3 - Por periodo");
             System.out.println("4 - Resumo financeiro");
+            System.out.println("5 - Relatorio unificado de pessoas");
+            System.out.println("6 - Exportar Dados Operacionais");
             System.out.println("0 - Voltar");
             System.out.print("Opcao: ");
             op = Integer.parseInt(sc.nextLine());
+
+            
 
             switch (op) {
                 case 1:
@@ -983,9 +1063,35 @@ public class Main {
                 case 4:
                     Relatorio.gerarResumoFinanceiro(consultas, consultas.size(), pagamentos, pagamentos.size(), multas, multas.size());
                     break;
+                case 5:
+                    Relatorio.relatorioUnificado(todasAsPessoas);
+                    break;
+                case 6:
+                    executarJornadaExportacao();
+                break;
                 case 0: break;
                 default: System.out.println("Opcao invalida!"); break;
             }
+        }   
         }
-    }
+        public static void executarJornadaExportacao() {
+            System.out.println("=== EXPORTAÇÃO DE DADOS OPERACIONAIS ===");
+            
+            List<Exportavel> listaExportaveis = new ArrayList<>();
+            
+            listaExportaveis.addAll(consultas);
+            listaExportaveis.addAll(atendimentos);
+            listaExportaveis.addAll(pagamentos);
+            
+            if (listaExportaveis.isEmpty()) {
+                System.out.println("Nenhum dado disponível no sistema para exportação.");
+                return;
+            }
+            
+            for (Exportavel item : listaExportaveis) {
+                // LIGAÇÃO DINÂMICA: o método chamado depende do tipo REAL do objeto
+                System.out.println(item.exportarDados());
+            }
+            System.out.println("====================================================");
+        }
 }

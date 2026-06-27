@@ -6,6 +6,7 @@ public class Profissional extends Pessoa {
     private String especialidade;
     private String registroProfissional;
     private double valorConsulta;
+    // AGREGAÇÃO: Profissional possui horários, mas horários sobrevivem sem o profissional
     private List<HorarioDisponivel> horariosDisponiveis = new ArrayList<>();
 
     
@@ -79,7 +80,7 @@ public class Profissional extends Pessoa {
         return false;
     }
 
-
+    // SOBRESCRITA
     @Override
     public String exibirResumo() {
         return "Nome: " + getNome() + " | Espec: " + especialidade + " | Reg: " + registroProfissional
