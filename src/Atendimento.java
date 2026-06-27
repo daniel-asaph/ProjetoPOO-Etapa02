@@ -3,7 +3,7 @@ import java.util.List;
 public class Atendimento implements Exportavel {
 
     private Consulta consulta;
-    // Prontuário só existe dentro dessa classe
+    // COMPOSIÇÃO: Prontuário só existe dentro de Atendimento
     private Prontuario prontuario;
 
     // registro basico - so observacoes

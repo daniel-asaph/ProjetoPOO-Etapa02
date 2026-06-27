@@ -22,6 +22,15 @@ public abstract class Pagamento implements Exportavel {
     public Consulta getConsulta() {
         return this.consulta;
     }
+    public double getValorFinal() {
+        return this.valorFinal;
+    }
+    public String getTipoPagamento() {
+        return this.tipoPagamento;
+    }
+    public int getParcelas() {
+        return this.parcelas;
+    }
 
     public abstract double calcularValorFinal();
 
