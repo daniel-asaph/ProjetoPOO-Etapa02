@@ -758,12 +758,12 @@ public class Main {
         int tipo = Integer.parseInt(sc.nextLine());
 
         if (tipo == 1) {
-            atendimentos[totalAtendimentos] = new Atendimento(idxConsulta, obs);
+            atendimentos[totalAtendimentos] = new Atendimento(consultas.get(idxConsulta), obs);
 
         } else if (tipo == 2) {
             System.out.print("Diagnostico: ");
             String diag = sc.nextLine();
-            atendimentos[totalAtendimentos] = new Atendimento(idxConsulta, obs, diag);
+            atendimentos[totalAtendimentos] = new Atendimento(consultas.get(idxConsulta), obs, diag);
 
         } else {
             System.out.print("Diagnostico: ");
@@ -772,7 +772,7 @@ public class Main {
             System.out.print("Como informar procedimentos? (1-Um por vez / 2-Todos de uma vez): ");
             int forma = Integer.parseInt(sc.nextLine());
 
-            String[] procs = new String[10];
+            List<String> procs = new ArrayList<>();
             int qtdProcs = 0;
 
             if (forma == 1) {
@@ -781,7 +781,7 @@ public class Main {
                     System.out.print("Procedimento (ou 'fim'): ");
                     proc = sc.nextLine();
                     if (!proc.equals("fim")) {
-                        procs[qtdProcs] = proc;
+                        procs.add(proc);
                         qtdProcs++;
                     }
                 }
@@ -791,10 +791,10 @@ public class Main {
                 if (qtdProcs > 10) qtdProcs = 10;
                 for (int i = 0; i < qtdProcs; i++) {
                     System.out.print("Proc " + (i+1) + ": ");
-                    procs[i] = sc.nextLine();
+                    procs.add(sc.nextLine());
                 }
             }
-            atendimentos[totalAtendimentos] = new Atendimento(idxConsulta, obs, diag, procs, qtdProcs);
+            atendimentos[totalAtendimentos] = new Atendimento(consultas.get(idxConsulta), obs, diag, procs);
         }
 
         consultas.get(idxConsulta).realizar();

@@ -69,7 +69,7 @@ public class Relatorio {
             if (consulta.getStatus().equals("realizada")) realizadas++;
             if (consulta.getStatus().equals("cancelada")) canceladas++;
         }
-        
+
         for (int i = 0; i < totalPagamentos; i++) {
             totalFaturado = totalFaturado + pagamentos[i].valorFinal;
         }
@@ -86,10 +86,10 @@ public class Relatorio {
     }
 
     // busca diagnostico de um atendimento pelo indice da consulta
-    public static String buscarDiagnostico(int indiceConsulta, Atendimento[] atendimentos, int total) {
+    public static String buscarDiagnostico(List<Consulta> consultas, Atendimento[] atendimentos, int total) {
         for (int i = 0; i < total; i++) {
-            if (atendimentos[i].indiceConsulta == indiceConsulta) {
-                return atendimentos[i].diagnostico;
+            if (atendimentos[i].getConsulta() == consultas.get(indiceConsulta)) {
+                return atendimentos[i].getDiagnostico();
             }
         }
         return "";
