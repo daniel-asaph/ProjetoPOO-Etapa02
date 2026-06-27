@@ -17,8 +17,12 @@ public class Fisioterapeuta extends Profissional {
     }
 
     @Override
-    public void registrarEspecifico(Object atendimento) {
-        System.out.println("Total previsto de sessões: " + this.totalSessoesPrevistas);
+    public void registrarEspecifico(Atendimento atendimento) {
+        if (atendimento != null && atendimento.getProntuario() != null) {
+            String obsAtual = atendimento.getProntuario().getObservacoes();
+            // Injeta o total de sessões previstas nas observações do prontuário 
+            atendimento.getProntuario().setObservacoes(obsAtual + " | Total de Sessões Previstas: " + this.totalSessoesPrevistas);
+        }
     }
 
     @Override

@@ -17,8 +17,12 @@ public class Psicologo extends Profissional {
     }
 
     @Override
-    public void registrarEspecifico(Object atendimento) {
-        System.out.println("Abordagem: " + this.abordagem);
+    public void registrarEspecifico(Atendimento atendimento) {
+        if (atendimento != null && atendimento.getProntuario() != null) {
+            String obsAtual = atendimento.getProntuario().getObservacoes();
+            // Injeta a abordagem terapêutica nas observações do prontuário 
+            atendimento.getProntuario().setObservacoes(obsAtual + " | Abordagem Terapêutica: " + this.abordagem);
+        }
     }
 
     @Override

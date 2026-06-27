@@ -22,35 +22,13 @@ public abstract class Pagamento implements Exportavel {
     public Consulta getConsulta() {
         return this.consulta;
     }
-    // sem desconto nenhum
-    public static double calcularValor(double valorBase) {
-        return valorBase;
-    }
 
-    // com desconto em percentual
-    public static double calcularValor(double valorBase, double percentualDesconto) {
-        double desconto = valorBase * percentualDesconto / 100;
-        double valor = valorBase - desconto;
-        if (valor < 0) {
-            valor = 0;
-        }
-        return valor;
-    }
-
-    // com desconto e multa somada
-    public static double calcularValor(double valorBase, double percentualDesconto, double multa) {
-        double desconto = valorBase * percentualDesconto / 100;
-        double valor = valorBase - desconto + multa;
-        if (valor < 0) {
-            valor = 0;
-        }
-        return valor;
-    }
+    public abstract double calcularValorFinal();
 
     public String exibirResumo() {
         // arredonda pra 2 casas
         double valorArredondado = Math.round(valorFinal * 100.0) / 100.0;
-        String resumo = "Consulta: " + consulta + " | Valor: R$" + valorArredondado
+        String resumo = "Consulta (CPF do paciente): " + consulta.getCpfPaciente() + " | Valor: R$" + valorArredondado
                 + " | Tipo: " + tipoPagamento + " | Parcelas: " + parcelas;
         if (parcelas > 1) {
             double valorParcela = Math.round((valorFinal / parcelas) * 100.0) / 100.0;

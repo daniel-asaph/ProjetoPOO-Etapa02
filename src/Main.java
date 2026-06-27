@@ -846,13 +846,28 @@ public class Main {
             int parc = Integer.parseInt(sc.nextLine());
             if (parc < 1) parc = 1;
             if (parc > 3) parc = 3;
-            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valor, tipoPag, parc);
+            pagamentos[totalPagamentos] = new PagamentoCartao(consultaSelecionada, valor, parc);
             if (parc > 1) {
                 double vlrParc = Math.round((valor / parc) * 100.0) / 100.0;
                 System.out.println("Pagamento em " + parc + "x de R$" + vlrParc);
             }
-        } else {
-            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valor, tipoPag);
+        } else if (tipoPag.equals("convenio")) {
+            System.out.print("Nome do convenio: ");
+            String nomeConv = sc.nextLine();
+            Convenio convenio = null;
+            if (nomeConv.equals("SaudePlus")) {
+                convenio = saudePlus;
+            } else if (nomeConv.equals("VidaMais")) {
+                convenio = vidaMais;
+            } else if (nomeConv.equals("BemEstar")) {
+                convenio = bemEstar;
+            } else {
+                System.out.println("Convenio invalido.");
+                return;
+            }
+            pagamentos[totalPagamentos] = new PagamentoConvenio(consultaSelecionada, valor, convenio);
+        } else if (tipoPag.equals("dinheiro")) {
+            pagamentos[totalPagamentos] = new PagamentoDinheiro(consultaSelecionada, valor);
         }
         totalPagamentos++;
         System.out.println("Pagamento registrado!");
@@ -867,17 +882,19 @@ public class Main {
             return;
         }
 
+        Consulta consultaSelecionada = consultas.get(idxConsulta);
+        
         // obtem valor do profissional
-        String nomeProf = consultas.get(idxConsulta).getNomeProfissional();
+        String nomeProf = consultaSelecionada.getNomeProfissional();
         int idxProf = buscarIndiceProfissional(nomeProf);
         double valorBase = profissionais[idxProf].getValorConsulta();
 
         // verifica convenio e tipo
-        String cpfPac = consultas.get(idxConsulta).getCpfPaciente();
+        String cpfPac = consultaSelecionada.getCpfPaciente();
         int idxPac = buscarIndicePaciente(cpfPac);
 
         boolean temConvenio = !pacientes[idxPac].getConvenioNome().equals("");
-        boolean ehRetorno = consultas.get(idxConsulta).getTipo().equals("retorno");
+        boolean ehRetorno = consultaSelecionada.getTipo().equals("retorno");
 
         double desconto = 0;
         if (ehRetorno) desconto = desconto + 20;
@@ -889,15 +906,15 @@ public class Main {
 
         double valorFinal;
         if (temMulta == 1 && desconto == 0) {
-            valorFinal = Pagamento.calcularValor(valorBase);
+            valorFinal = PagamentoConvenio.calcularValor(valorBase);
         } else if (temMulta == 1) {
-            valorFinal = Pagamento.calcularValor(valorBase, desconto);
+            valorFinal = PagamentoConvenio.calcularValor(valorBase, desconto);
         } else {
             System.out.print("Valor da multa: ");
             valorMulta = Double.parseDouble(sc.nextLine());
-            valorFinal = Pagamento.calcularValor(valorBase, desconto, valorMulta);
+            valorFinal = PagamentoConvenio.calcularValor(valorBase, desconto, valorMulta);
         }
-
+        
         // mostra detalhes
         System.out.println("Valor base: R$" + valorBase);
         System.out.println("Desconto: " + desconto + "%");
@@ -913,11 +930,11 @@ public class Main {
             int parc = Integer.parseInt(sc.nextLine());
             if (parc < 1) parc = 1;
             if (parc > 3) parc = 3;
-            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valorFinal, tipoPag, parc);
+            pagamentos[totalPagamentos] = new PagamentoCartao(consultaSelecionada, valorFinal, parc);
             double vlrParc = Math.round((valorFinal / parc) * 100.0) / 100.0;
             System.out.println("Pagamento em " + parc + "x de R$" + vlrParc);
         } else {
-            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valorFinal, tipoPag);
+            pagamentos[totalPagamentos] = new PagamentoDinheiro(consultaSelecionada, valorFinal);
         }
         totalPagamentos++;
         System.out.println("Pagamento registrado!");

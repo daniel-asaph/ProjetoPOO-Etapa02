@@ -87,7 +87,7 @@ public class Profissional extends Pessoa {
     }
 
     
-    public void registrarEspecifico(Object atendimento) {
+    public void registrarEspecifico(Atendimento atendimento) {
         // Vazio na classe base
     }
 

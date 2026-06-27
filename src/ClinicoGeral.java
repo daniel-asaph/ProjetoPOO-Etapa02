@@ -17,8 +17,12 @@ public class ClinicoGeral extends Profissional {
     }
 
     @Override
-    public void registrarEspecifico(Object atendimento) {
-        System.out.println("Encaminhamento: " + this.encaminhamento);
+    public void registrarEspecifico(Atendimento atendimento) {
+        if (atendimento != null && atendimento.getProntuario() != null) {
+            String obsAtual = atendimento.getProntuario().getObservacoes();
+            // Injeta o encaminhamento nas observações do prontuário 
+            atendimento.getProntuario().setObservacoes(obsAtual + " | Encaminhamento: " + this.encaminhamento);
+        }
     }
 
     @Override
