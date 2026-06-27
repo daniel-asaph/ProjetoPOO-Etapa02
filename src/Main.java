@@ -835,7 +835,7 @@ public class Main {
             System.out.println("Indice invalido.");
             return;
         }
-
+        Consulta consultaSelecionada = consultas.get(idxConsulta);
         System.out.print("Valor: ");
         double valor = Double.parseDouble(sc.nextLine());
         System.out.print("Tipo (dinheiro/cartao/convenio): ");
@@ -846,13 +846,13 @@ public class Main {
             int parc = Integer.parseInt(sc.nextLine());
             if (parc < 1) parc = 1;
             if (parc > 3) parc = 3;
-            pagamentos[totalPagamentos] = new Pagamento(idxConsulta, valor, tipoPag, parc);
+            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valor, tipoPag, parc);
             if (parc > 1) {
                 double vlrParc = Math.round((valor / parc) * 100.0) / 100.0;
                 System.out.println("Pagamento em " + parc + "x de R$" + vlrParc);
             }
         } else {
-            pagamentos[totalPagamentos] = new Pagamento(idxConsulta, valor, tipoPag);
+            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valor, tipoPag);
         }
         totalPagamentos++;
         System.out.println("Pagamento registrado!");
@@ -913,11 +913,11 @@ public class Main {
             int parc = Integer.parseInt(sc.nextLine());
             if (parc < 1) parc = 1;
             if (parc > 3) parc = 3;
-            pagamentos[totalPagamentos] = new Pagamento(idxConsulta, valorFinal, tipoPag, parc);
+            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valorFinal, tipoPag, parc);
             double vlrParc = Math.round((valorFinal / parc) * 100.0) / 100.0;
             System.out.println("Pagamento em " + parc + "x de R$" + vlrParc);
         } else {
-            pagamentos[totalPagamentos] = new Pagamento(idxConsulta, valorFinal, tipoPag);
+            pagamentos[totalPagamentos] = new Pagamento(consultaSelecionada, valorFinal, tipoPag);
         }
         totalPagamentos++;
         System.out.println("Pagamento registrado!");

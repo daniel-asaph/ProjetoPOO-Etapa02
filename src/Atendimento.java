@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Atendimento {
+public class Atendimento implements Exportavel {
 
     private Consulta consulta;
     // Prontuário só existe dentro dessa classe
@@ -58,10 +58,22 @@ public class Atendimento {
         return resumo;
     }
 
-public Consulta getConsulta() {
+    public Consulta getConsulta() {
         return consulta;
     }
     public Prontuario getProntuario() {
         return prontuario;
+    }
+
+    @Override
+    public String exportarDados() {
+        String procs = prontuario.getProcedimentosRealizados() != null ? 
+                       String.join(",", prontuario.getProcedimentosRealizados()) : "Nenhum";
+                       
+        return "TIPO:Atendimento | CPF_PACIENTE:" + consulta.getCpfPaciente() +
+               " | DATA:" + consulta.getData() +
+               " | OBSERVACOES:" + prontuario.getObservacoes() +
+               " | DIAGNOSTICO:" + prontuario.getDiagnosticoDoPaciente() +
+               " | PROCEDIMENTOS:" + procs;
     }
 }

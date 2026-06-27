@@ -1,4 +1,4 @@
-public class Consulta implements Agendavel {
+public class Consulta implements Agendavel, Exportavel {
     private String cpfPaciente;
     private String nomeProfissional;
     private String data;
@@ -81,5 +81,15 @@ public class Consulta implements Agendavel {
         return "Paciente(CPF): " + cpfPaciente + " | Prof: " + nomeProfissional
                 + " | Data: " + data + " | Hora: " + horario
                 + " | Tipo: " + tipo + " | Status: " + status;
+    }
+
+    @Override
+    public String exportarDados() {
+        return "TIPO:Consulta | CPF_PACIENTE:" + getCpfPaciente() + 
+               " | PROFISSIONAL:" + getNomeProfissional() + 
+               " | DATA:" + getData() + 
+               " | HORARIO:" + getHorario() + 
+               " | STATUS:" + getStatus() + 
+               " | TIPO_CONSULTA:" + getTipo();
     }
 }
