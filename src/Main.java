@@ -456,10 +456,10 @@ public class Main {
 
         // verifica dia da semana
         String diaSemana = descobrirDiaSemana(data);
-        if (!prof.atendeNoDia(diaSemana)) {
-            System.out.println("Profissional nao atende nesse dia.");
-            return;
-        }
+if (!prof.atendeNoHorario(diaSemana, horario)) {
+    System.out.println("Profissional nao atende nesse dia/horario.");
+    return;
+}
 
         // verifica conflito
         if (temConflito(nomeP, data, horario)) {
@@ -523,12 +523,12 @@ public class Main {
         Profissional profissionalEscolhido = null;
         for (Profissional p : profissionaisMap.values()) {
             if (p.getEspecialidade().equals(esp)
-                    && p.getValorConsulta() > 0
-                    && p.atendeNoDia(diaSemana)
-                    && !temConflito(p.getNome(), data, horario)) {
-                profissionalEscolhido = p;
-                break;
-            }
+        && p.getValorConsulta() > 0
+        && p.atendeNoHorario(diaSemana, horario)
+        && !temConflito(p.getNome(), data, horario)) {
+    profissionalEscolhido = p;
+    break;
+}
         }
 
         if (profissionalEscolhido == null) {

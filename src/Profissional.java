@@ -62,17 +62,30 @@ public class Profissional extends Pessoa {
         return false;
     }
 
-    public boolean atendeNoHorario(String dia, String turno) {
-        if (dia == null || turno == null) return false;
-        for (HorarioDisponivel h : horariosDisponiveis) {
-            if (h.getDiaSemana().equals(dia) && h.getTurno().equals(turno)) {
-                return true;
+    public boolean atendeNoHorario(String dia, String horario) {
+    if (dia == null || horario == null) return false;
+
+    for (HorarioDisponivel h : horariosDisponiveis) {
+        if (h.getDiaSemana().equals(dia)) {
+            String turno = h.getTurno();
+
+            int hora = Integer.parseInt(horario.substring(0, 2));
+
+            if (turno.equals("manha")) {
+                if (hora >= 8 && hora < 12) {
+                    return true;
+                }
+            } else if (turno.equals("tarde")) {
+                if (hora >= 12 && hora <= 18) {
+                    return true;
+                }
             }
         }
-        return false;
     }
+    return false;
+}
 
-    public static boolean especialidadeValida(String esp) {
+public static boolean especialidadeValida(String esp) {
         if (esp.equals("clinica geral")) return true;
         if (esp.equals("fisioterapia")) return true;
         if (esp.equals("psicologia")) return true;
@@ -80,6 +93,7 @@ public class Profissional extends Pessoa {
         return false;
     }
 
+    
     // SOBRESCRITA
     @Override
     public String exibirResumo() {
